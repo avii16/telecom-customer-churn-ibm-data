@@ -19,9 +19,9 @@ from sklearn.metrics import (
 
 warnings.filterwarnings('ignore')
 
-# ====================================================================
+ 
 # PAGE CONFIG & STYLING
-# ====================================================================
+ 
 
 st.set_page_config(
     page_title="Churn Prediction | ML Assignment 2",
@@ -124,14 +124,14 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-# ====================================================================
+ 
 # LOAD MODELS AND PREPROCESSOR
-# ====================================================================
+ 
 
 @st.cache_resource
 def load_models():
     """Load all trained models and preprocessor"""
-    model_dir = Path("model")
+    model_dir = Path("models")
     
     models = {}
     try:
@@ -144,9 +144,9 @@ def load_models():
     except Exception as e:
         return {}, False
 
-# ====================================================================
+ 
 # EVALUATION FUNCTIONS
-# ====================================================================
+ 
 
 def evaluate_predictions(y_true, y_pred, y_proba, model_name="Model"):
     """Calculate all evaluation metrics"""
@@ -171,9 +171,9 @@ def plot_confusion_matrix(y_true, y_pred):
     plt.tight_layout()
     return fig, cm
 
-# ====================================================================
+ 
 # MAIN APP
-# ====================================================================
+ 
 
 # Load models
 models, models_loaded = load_models()
@@ -252,9 +252,9 @@ with col2:
     </div>
     """, unsafe_allow_html=True)
 
-# ====================================================================
+ 
 # PREDICTIONS AND ANALYSIS
-# ====================================================================
+ 
 
 if test_data is not None and 'Churn' in test_data.columns:
     # Separate features and target
@@ -269,9 +269,9 @@ if test_data is not None and 'Churn' in test_data.columns:
     # Calculate metrics
     metrics = evaluate_predictions(y_test, y_pred, y_proba, selected_model)
     
-    # ====================================================================
+     
     # SECTION 1: KEY METRICS
-    # ====================================================================
+     
     
     st.markdown('<div class="section-header">📈 Performance Metrics</div>', unsafe_allow_html=True)
     
@@ -425,9 +425,9 @@ if test_data is not None and 'Churn' in test_data.columns:
             </div>
             """, unsafe_allow_html=True)
     
-    # ====================================================================
+     
     # SECTION 2: CONFUSION MATRIX
-    # ====================================================================
+     
     
     st.markdown('<div class="section-header">🔍 Confusion Matrix</div>', unsafe_allow_html=True)
     
@@ -448,9 +448,9 @@ if test_data is not None and 'Churn' in test_data.columns:
         for label, value in cm_data.items():
             st.markdown(f"**{label}:** `{value}`")
     
-    # ====================================================================
+     
     # SECTION 3: CLASSIFICATION REPORT
-    # ====================================================================
+     
     
     st.markdown('<div class="section-header">📋 Classification Report</div>', unsafe_allow_html=True)
     
@@ -519,9 +519,9 @@ if test_data is not None and 'Churn' in test_data.columns:
         - **Overall Accuracy**: {metrics['Accuracy']:.4f}
         """)
     
-    # ====================================================================
+     
     # SECTION 4: MODEL COMPARISON
-    # ====================================================================
+     
     
     st.markdown('<div class="section-header">🏆 All Models Comparison</div>', unsafe_allow_html=True)
     
@@ -553,9 +553,9 @@ if test_data is not None and 'Churn' in test_data.columns:
     </div>
     """, unsafe_allow_html=True)
     
-    # ====================================================================
+     
     # SECTION 5: PREDICTION SAMPLES
-    # ====================================================================
+     
     
     st.markdown('<div class="section-header">🎯 Sample Predictions</div>', unsafe_allow_html=True)
     

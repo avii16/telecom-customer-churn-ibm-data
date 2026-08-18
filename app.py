@@ -131,7 +131,7 @@ st.markdown("""
 @st.cache_resource
 def load_models():
     """Load all trained models and preprocessor"""
-    model_dir = Path("models")
+    model_dir = Path("model")
     
     models = {}
     try:
